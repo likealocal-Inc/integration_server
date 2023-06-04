@@ -12,6 +12,13 @@ export class ExceptionCode {
 }
 
 export const ExceptionCodeList = {
+  SYSTEM: {
+    SERVER_ERROR: new ExceptionCode(
+      'SERVER_ERROR',
+      'Server 오류',
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    ),
+  },
   COMMON: {
     WRONG_REQUEST: new ExceptionCode(
       'WRONG_REQUEST',

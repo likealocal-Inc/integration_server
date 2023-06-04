@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Render } from '@nestjs/common';
 import { AirportService } from './airport.service';
 import { APIResponseObj, HttpUtils } from 'src/libs/core/utils/http.utils';
 import { FlightSearchResultDto } from './dto/flight.search.result.dto';
@@ -36,5 +36,13 @@ export class AirportController {
       true,
       await this.airportService.getScheduleForPlane(name),
     );
+  }
+
+  @Get('view/:flight_id')
+  @Render('flight')
+  async viewFlightInfo(@Param('flight_id') name: string) {
+    const res = await this.airportService.getScheduleForPlane(name);
+    console.log(res);
+    return { flight_info: res };
   }
 }
